@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block pagename %}
+<div class="row">
+    <div class="col text-center">
+        <h1>{{pagename}}</h1><hr>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <body>
+        <main>
+            <section class="form-section">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input class='btn btn-primary' type="submit" value="Логин" />
+            </form>
+                {% include 'messages.html' %}
+            </section>
+        </main>
+    </body>
+{% endblock %}
