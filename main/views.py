@@ -89,6 +89,7 @@ def catalog_page(request:WSGIRequest) -> HttpResponse:
     context: dict = get_base_context("Каталог")
     return render(request,"pages/catalog.html",context)
 
+
 def profile(request: WSGIRequest) -> HttpResponse:
     """
     Страница профиля пользователя
