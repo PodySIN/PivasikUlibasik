@@ -20,10 +20,12 @@ class Users(AbstractUser):
 class Feedback(models.Model):
     """
     Модель отзывов пользователя о продукте.
+    :param Beer_id: id пива
     :param Text: Текст отзыва
     :param Mark: Оценка пива
     """
 
+    Beer_id = models.IntegerField(default=0)
     Text = models.CharField(default="", max_length=512)
     Mark = models.IntegerField(default=5)
 
@@ -40,8 +42,10 @@ class Beer(models.Model):
     :param Mark: Оценка пива
     """
 
-    Name = models.CharField(default="Балтика", max_length=64)
-    Origin = models.CharField(default="Россия", max_length=64)
+    Name = models.CharField(default="Балтика", max_length=128)
+    Amount = models.IntegerField(default=500)
+    Strength = models.FloatField(default=9.9)
+    Origin = models.CharField(default="Россия", max_length=128)
     Price = models.IntegerField(default=100)
     Description = models.CharField(default="", max_length=512)
     Feedback_id = models.ForeignKey(Feedback, on_delete=models.CASCADE, default=0)
@@ -82,5 +86,6 @@ class Shop(models.Model):
 
     Shop_id = models.IntegerField(primary_key=True, default=1)
     Job = models.BinaryField(default=1)
+    Address = models.CharField(default="Бульвар", max_length=256)
     Discounts_id = models.ForeignKey(Discounts, on_delete=models.CASCADE, default=1)
     Beer_id = models.ForeignKey(Goods, on_delete=models.CASCADE, default=1)
