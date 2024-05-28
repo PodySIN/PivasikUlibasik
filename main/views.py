@@ -83,3 +83,12 @@ def logout(request: WSGIRequest) -> HttpResponse:
     django_logout(request)
     messages.add_message(request, messages.INFO, "Вы успешно вышли из аккаунта")
     return redirect("/")
+
+
+def profile(request: WSGIRequest) -> HttpResponse:
+    """
+    Страница профиля пользователя
+    """
+    context = get_base_context("Профиль")
+
+    return render(request, "pages/profile.html", context)
