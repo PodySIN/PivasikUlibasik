@@ -40,15 +40,18 @@ class Beer(models.Model):
     :param Description: Состав пива
     :param Id_of_feedback: id на таблицу с отзывами
     :param Mark: Оценка пива
+    :param Amount: Объём
+    :param Strength: Градусы
+    :param Image: Изображение
     """
 
     Name = models.CharField(default="Балтика", max_length=128)
-    Amount = models.IntegerField(default=500)
+    Image = models.CharField(max_length=128, default="images/beers/baltika_7.jpg")
+    Amount = models.FloatField(default=500)
     Strength = models.FloatField(default=9.9)
     Origin = models.CharField(default="Россия", max_length=128)
     Price = models.IntegerField(default=100)
     Description = models.CharField(default="", max_length=512)
-    Feedback_id = models.ForeignKey(Feedback, on_delete=models.CASCADE, default=0)
     Mark = models.IntegerField(default=5)
 
 
