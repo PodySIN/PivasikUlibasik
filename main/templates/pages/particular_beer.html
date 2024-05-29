@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="text-center">
+        <img class='beer_images' src="{% static beer.Image %}">
+        <h2>{{beer.Name}}</h2>
+    </div>
+    {% if beer.Mark == 5 %}
+        <div class="text-center">
+            <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+        </div>
+    {% endif %}
+
+    {% if beer.Mark == 4 %}
+        <div class="text-center">
+            <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+        </div>
+    {% endif %}
+
+    {% if beer.Mark == 3 %}
+        <div class="text-center">
+            <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+        </div>
+    {% endif %}
+
+    {% if beer.Mark == 2 %}
+        <div class="text-center">
+            <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+        </div>
+    {% endif %}
+
+    {% if beer.Mark == 1 %}
+        <div class="text-center">
+            <img class='star_image' src="{% static 'images/star.png' %}">
+        </div>
+    {% endif %}
+    <div class="text-center"><p>{{beer.Description}}</p></div>
+    <div class="text-center"><p>Градусы: {{beer.Strength}}</p></div>
+    <div class="text-center"><p>{{beer.Origin}}, {{beer.Amount}} л.</p></div>
+    <div class="text-center"><h4>{{beer.Price}}.00 ₽</h4></div>
+{% endblock %}

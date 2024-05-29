@@ -1,0 +1,34 @@
+.beer_images {
+  width: 275px;
+  height: 225px;
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  -ms-interpolation-mode: nearest-neighbor;  /* IE */
+  image-rendering: crisp-edges; /* Стандартное свойство */
+}
+
+a.text:active, /* активная/посещенная ссылка */
+a.text:hover,  /* при наведении */
+a.text {
+  text-decoration: none;
+  color: #666;
+}
+
+.star_image {
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  -ms-interpolation-mode: nearest-neighbor;  /* IE */
+  image-rendering: crisp-edges; /* Стандартное свойство */
+  width: 30px;
+  height: 30px;
+}
+
+.serv ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.serv li {
+  outline: 1px solid;
+}

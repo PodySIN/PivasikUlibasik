@@ -14,7 +14,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from main.Utility import get_base_context
 from main.forms import RegistrationForm, LoginForm
-from main.models import Users
+from main.models import Users, Beer
 
 
 def index_page(request: WSGIRequest) -> HttpResponse:
@@ -87,6 +87,7 @@ def logout(request: WSGIRequest) -> HttpResponse:
 
 def catalog_page(request: WSGIRequest) -> HttpResponse:
     context: dict = get_base_context("Каталог")
+    context["beers"] = Beer.objects.all()
     return render(request, "pages/catalog.html", context)
 
 
@@ -99,3 +100,11 @@ def profile_page(request: WSGIRequest) -> HttpResponse:
     context["bonuses"] = request.user.Bonuses
 
     return render(request, "pages/profile.html", context)
+
+
+def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
+    particular_beer = Beer.objects.get(id=beer_id)
+
+    context = get_base_context(f"{particular_beer.Name}")
+    context["beer"] = particular_beer
+    return render(request, "pages/particular_beer.html", context)

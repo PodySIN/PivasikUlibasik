@@ -3,12 +3,48 @@
 
 
 {% block content %}
-<h1>
-    Балтика:
-</h1>
-<img style="width:400px; height:300px;" src="{% static 'images/baltika_7.jpg' %}">
-<h1>
-    охота
-</h1>
+<div class="serv">
+     <ul>
+    {% for beer in beers %}
+         <a class="text" href="/particular_beer/{{beer.id}}">
+            <li>
+                <img class='beer_images' src="{% static beer.Image %}">
+                <div class="text-center"><h2>{{beer.Name}}</h2></div>
+                {% if beer.Mark == 5 %}
+                    <div class="text-center">
+                        <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+                    </div>
+                {% endif %}
+
+                {% if beer.Mark == 4 %}
+                    <div class="text-center">
+                        <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+                    </div>
+                {% endif %}
+
+                {% if beer.Mark == 3 %}
+                    <div class="text-center">
+                        <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+                    </div>
+                {% endif %}
+
+                {% if beer.Mark == 2 %}
+                    <div class="text-center">
+                        <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+                    </div>
+                {% endif %}
+
+                {% if beer.Mark == 1 %}
+                    <div class="text-center">
+                        <img class='star_image' src="{% static 'images/star.png' %}">
+                    </div>
+                {% endif %}
+                <div class="text-center"><p>{{beer.Origin}}, {{beer.Amount}} л.</p></div>
+                <div class="text-center"><h4>{{beer.Price}}.00 ₽</h4></div>
+            </li>
+         </a>
+    {% endfor %}
+     </ul>
+</div>
 
 {% endblock %}
