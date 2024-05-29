@@ -24,7 +24,7 @@ urlpatterns = [
     path("", views.index_page, name="index"),
     path("registration/", views.registration_page, name="registration"),
     path("login/", views.login, name="login"),
-    path("profile/", views.index_page, name="profile"),
+    path("profile/", views.profile_page, name="profile"),
     path("logout/", views.logout, name="logout"),
-    path("catalog/",views.catalog_page, name="catalog")
+    path("catalog/", views.catalog_page, name="catalog"),
 ]
