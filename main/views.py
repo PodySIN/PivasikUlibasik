@@ -85,15 +85,17 @@ def logout(request: WSGIRequest) -> HttpResponse:
     return redirect("/")
 
 
-def catalog_page(request:WSGIRequest) -> HttpResponse:
+def catalog_page(request: WSGIRequest) -> HttpResponse:
     context: dict = get_base_context("Каталог")
-    return render(request,"pages/catalog.html",context)
+    return render(request, "pages/catalog.html", context)
 
 
-def profile(request: WSGIRequest) -> HttpResponse:
+def profile_page(request: WSGIRequest) -> HttpResponse:
     """
     Страница профиля пользователя
     """
     context = get_base_context("Профиль")
+    context["username"] = request.user.username
+    context["bonuses"] = request.user.Bonuses
 
     return render(request, "pages/profile.html", context)

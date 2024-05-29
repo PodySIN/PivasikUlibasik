@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
-
-
+{% load static %}
 
 {% block content %}
-<h1>
-    <form>
-
-    </form>
-</h1>
-
+<div class="text-center">
+    <h1>Профиль</h1>
+    <h2>Имя пользователя: {{ username }}</h2>
+    <h2>Бонусы: {{ bonuses }}</h2>
+</div>
 {% endblock %}
