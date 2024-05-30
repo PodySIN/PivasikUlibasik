@@ -4,7 +4,7 @@
 {% block content %}
     <div class="text-center">
         <img class='beer_images' src="{% static beer.Image %}">
-        <h2>{{beer.Name}}</h2>
+        <h2>{{ beer.Name}}</h2>
     </div>
     {% if beer.Mark == 5 %}
         <div class="text-center">
@@ -39,4 +39,55 @@
     <div class="text-center"><p>Градусы: {{beer.Strength}}</p></div>
     <div class="text-center"><p>{{beer.Origin}}, {{beer.Amount}} л.</p></div>
     <div class="text-center"><h4>{{beer.Price}}.00 ₽</h4></div>
+
+
+
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class='btn btn-primary' type="submit" value="Отправить отзыв" />
+    </form>
+
+
+
+
+
+        <hr>
+    <div class="text-center">
+        <h2>Отзывы к товару:</h2>
+    </div>
+
+
+    {% for feedback in feedbacks %}
+    <div class="card">
+      <div class="card-header">
+          <h5>{{ feedback.Username}}</h5>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            {% if feedback.Mark == 5 %}
+                <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+            {% endif %}
+
+            {% if feedback.Mark == 4 %}
+                <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+            {% endif %}
+
+            {% if feedback.Mark == 3 %}
+                <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+            {% endif %}
+
+            {% if feedback.Mark == 2 %}
+                <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
+            {% endif %}
+
+            {% if feedback.Mark == 1 %}
+                <img class='star_image' src="{% static 'images/star.png' %}">
+            {% endif %}
+            <p>{{ feedback.Text }}</p>
+        </blockquote>
+      </div>
+    </div>
+    {% endfor %}
 {% endblock %}
