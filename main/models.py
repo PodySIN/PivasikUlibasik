@@ -62,8 +62,8 @@ class Goods(models.Model):
     :param Beer_id: id пива
     """
 
-    Shop_id = models.IntegerField(primary_key=True, default=1)
-    Beer_id = models.ForeignKey(Beer, on_delete=models.CASCADE, default=0)
+    Shop_id = models.IntegerField(default=0)
+    Beer_id = models.IntegerField(default=0)
 
 
 class Discounts(models.Model):
@@ -74,8 +74,7 @@ class Discounts(models.Model):
     :param Amount: сама скидка
     """
 
-    Shop_id = models.IntegerField(primary_key=True, default=1)
-    Discount = models.ForeignKey(Beer, on_delete=models.CASCADE, default=1)
+    Shop_id = models.IntegerField(default=0)
     Amount = models.IntegerField(default=0)
 
 
@@ -91,5 +90,3 @@ class Shop(models.Model):
     Shop_id = models.IntegerField(primary_key=True, default=1)
     Job = models.BinaryField(default=1)
     Address = models.CharField(default="Бульвар", max_length=256)
-    Discounts_id = models.ForeignKey(Discounts, on_delete=models.CASCADE, default=1)
-    Beer_id = models.ForeignKey(Goods, on_delete=models.CASCADE, default=1)
