@@ -40,27 +40,36 @@
             </div>
         {% endif %}
         <div class="text-center"><p>{{beer.Description}}</p></div>
-        <div class="text-center"><p>Градусы: {{beer.Strength}}</p></div>
+        <div class="text-center"><p>Крепкость: {{beer.Strength}}</p></div>
         <div class="text-center"><p>{{beer.Origin}}, {{beer.Amount}} л.</p></div>
         <div class="text-center"><h4>{{beer.Price}}.00 ₽</h4></div>
     </div>
-    <div class="col">
-        <h1>ㅤㅤㅤㅤㅤ</h1>
-    </div>
 
     <div class="col">
-        <h1>ㅤㅤㅤㅤㅤ</h1>
-    </div>
-    <div class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 21rem;">
+          <div class="card-body">
+            <h5 class="card-title">Выгоднее всего покупать пивасик здесь:</h5>
+          </div>
           <ul class="list-group list-group-flush">
-
-              {% for shop in shops %}
+            {% for key, val in discounts.items %}
+                <a href="{% url 'index' %}">
+                    <li class="list-group-item">{{key}}: по скидке: <b>{{val}}.00 ₽</b></li>
+                </a>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 21rem;">
+          <div class="card-body">
+            <h5 class="card-title">Есть в наличии по адресам:</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+             {% for shop in shops %}
                 <a href="{% url 'index' %}">
                     <h6><li class="list-group-item">{{ shop.Address }}</li></h6>
                 </a>
               {% endfor %}
-
           </ul>
         </div>
     </div>
@@ -73,9 +82,6 @@
         {{ form.as_p }}
         <input class='btn btn-primary' type="submit" value="Отправить отзыв" />
     </form>
-
-
-
 
 
         <hr>

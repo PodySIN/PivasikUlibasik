@@ -12,7 +12,12 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from main.Utility import get_base_context, change_beers_mark
+from main.Utility import (
+    get_base_context,
+    change_beers_mark,
+    get_shops_of_the_current_beer,
+    get_discounts_of_beer,
+)
 from main.forms import RegistrationForm, LoginForm, Feedback_Form
 from main.models import Users, Beer, Feedback, Goods, Shop
 
@@ -128,13 +133,8 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
     context = get_base_context(f"{particular_beer.Name}")
     context["beer"] = particular_beer
     context["form"] = Feedback_Form()
-    goods = Goods.objects.filter(Beer_id=beer_id)
-    shops_arr = []
-
-    for i in range(len(goods)):
-        shops_arr.append(Shop.objects.get(Shop_id=goods[i].Shop_id))
-    context['shops'] = shops_arr
-
+    context["discounts"] = get_discounts_of_beer(beer_id)
+    context["shops"] = get_shops_of_the_current_beer(beer_id)
     context["feedbacks"] = Feedback.objects.filter(Beer_id=beer_id)
     if request.method == "POST":
         form: Feedback_Form = Feedback_Form(request.POST)
