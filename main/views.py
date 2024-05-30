@@ -14,7 +14,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from main.Utility import get_base_context, change_beers_mark
 from main.forms import RegistrationForm, LoginForm, Feedback_Form
-from main.models import Users, Beer, Feedback
+from main.models import Users, Beer, Feedback, Goods, Shop
 
 
 def index_page(request: WSGIRequest) -> HttpResponse:
@@ -128,6 +128,13 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
     context = get_base_context(f"{particular_beer.Name}")
     context["beer"] = particular_beer
     context["form"] = Feedback_Form()
+    goods = Goods.objects.filter(Beer_id=beer_id)
+    shops_arr = []
+
+    for i in range(len(goods)):
+        shops_arr.append(Shop.objects.get(Shop_id=goods[i].Shop_id))
+    context['shops'] = shops_arr
+
     context["feedbacks"] = Feedback.objects.filter(Beer_id=beer_id)
     if request.method == "POST":
         form: Feedback_Form = Feedback_Form(request.POST)

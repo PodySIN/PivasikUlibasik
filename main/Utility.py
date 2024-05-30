@@ -5,6 +5,11 @@ from main.models import Feedback
 
 
 def get_base_context(Title: str) -> dict:
+    """
+    Возвращает словарь с названием страницы
+    :param Title: Название страницы
+    :return: словарь с названием страницы
+    """
     context: dict = {
         "Title": Title,
     }
@@ -12,6 +17,11 @@ def get_base_context(Title: str) -> dict:
 
 
 def change_beers_mark(particular_beer):
+    """
+    Функция, которая изменяет в бд оценку пива по отзывам пользователя.
+    :param particular_beer: Конкретное пиво, на которое перешел пользователь
+    :return: Ничего не возвращает, а сохраняет изменения в бд
+    """
     all_feedbacks = Feedback.objects.all()
     middle_mark: int = 0
     for i in range(len(all_feedbacks)):
