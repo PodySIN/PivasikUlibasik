@@ -12,14 +12,16 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from main.Utility import get_base_context
-from main.forms import RegistrationForm, LoginForm
-from main.models import Users, Beer
+from main.Utility import get_base_context, change_beers_mark
+from main.forms import RegistrationForm, LoginForm, Feedback_Form
+from main.models import Users, Beer, Feedback
 
 
 def index_page(request: WSGIRequest) -> HttpResponse:
     """
     Главная страница сайта
+    :param request: запрос к странице
+    :return: главную страницу
     """
     context: dict = get_base_context("ПивасикУлыбасик")
 
@@ -28,7 +30,9 @@ def index_page(request: WSGIRequest) -> HttpResponse:
 
 def registration_page(request: WSGIRequest) -> HttpResponse:
     """
-    Страница регистрации на сайте
+    Страница регистрации пользователя в систему
+    :param request: запрос к странице
+    :return: страницу регистрации пользователя
     """
     context: dict = get_base_context("Регистрация")
     context["RegistrationForm"] = RegistrationForm()
@@ -57,15 +61,17 @@ def registration_page(request: WSGIRequest) -> HttpResponse:
 
 def login(request: WSGIRequest) -> HttpResponse:
     """
-    Страница входа пользователя
+    Страница входа пользователя в систему
+    :param request: запрос к странице
+    :return: страницу входа пользователя в систему
     """
-    context = get_base_context("Login")
+    context: dict = get_base_context("Login")
     context["form"] = LoginForm()
     if request.method == "POST":
-        form = LoginForm(request.POST)
+        form: LoginForm = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
+            username: str = form.cleaned_data["username"]
+            password: str = form.cleaned_data["password"]
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 django_login(request, user)
@@ -78,7 +84,9 @@ def login(request: WSGIRequest) -> HttpResponse:
 
 def logout(request: WSGIRequest) -> HttpResponse:
     """
-    Выход пользователя
+    Выход пользователя из системы
+    :param request: запрос к странице
+    :return: на главную страницу
     """
     django_logout(request)
     messages.add_message(request, messages.INFO, "Вы успешно вышли из аккаунта")
@@ -86,6 +94,11 @@ def logout(request: WSGIRequest) -> HttpResponse:
 
 
 def catalog_page(request: WSGIRequest) -> HttpResponse:
+    """
+    Страница всего пива в магазинах
+    :param request: запрос к странице
+    :return: каталог пива
+    """
     context: dict = get_base_context("Каталог")
     context["beers"] = Beer.objects.all()
     return render(request, "pages/catalog.html", context)
@@ -93,9 +106,11 @@ def catalog_page(request: WSGIRequest) -> HttpResponse:
 
 def profile_page(request: WSGIRequest) -> HttpResponse:
     """
-    Страница профиля пользователя
+    Страница отображения профиля пользователя
+    :param request: запрос к странице
+    :return: страницу профиля пользователя
     """
-    context = get_base_context("Профиль")
+    context: dict = get_base_context("Профиль")
     context["username"] = request.user.username
     context["bonuses"] = request.user.Bonuses
 
@@ -103,8 +118,31 @@ def profile_page(request: WSGIRequest) -> HttpResponse:
 
 
 def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
+    """
+    Страница отображения конкретного пива из каталога
+    :param request: запрос к странице
+    :param beer_id: id конкретного пива, которое мы смотрим
+    :return: страницу конкретного пива
+    """
     particular_beer = Beer.objects.get(id=beer_id)
-
     context = get_base_context(f"{particular_beer.Name}")
     context["beer"] = particular_beer
+    context["form"] = Feedback_Form()
+    context["feedbacks"] = Feedback.objects.filter(Beer_id=beer_id)
+    if request.method == "POST":
+        form: Feedback_Form = Feedback_Form(request.POST)
+        if form.is_valid():
+            text: str = form.data.get("Text")
+            mark: int = form.data.get("Mark")
+            if mark <= 1 and mark <= 5:
+                feedback = Feedback(
+                    Beer_id=beer_id,
+                    Text=text,
+                    Mark=mark,
+                    Username=request.user.username,
+                )
+                feedback.save()
+                change_beers_mark(particular_beer)
+            else:
+                messages.add_message(request, messages.INFO, "Введите оценку от 1 до 5")
     return render(request, "pages/particular_beer.html", context)

@@ -23,11 +23,13 @@ class Feedback(models.Model):
     :param Beer_id: id пива
     :param Text: Текст отзыва
     :param Mark: Оценка пива
+    :param Username: Ник пользователя, написавшего отзыв
     """
 
     Beer_id = models.IntegerField(default=0)
     Text = models.CharField(default="", max_length=512)
     Mark = models.IntegerField(default=5)
+    Username = models.CharField(default=0, max_length=128)
 
 
 class Beer(models.Model):
@@ -38,7 +40,6 @@ class Beer(models.Model):
     :param Origin: Место производства
     :param Price: Цена пива
     :param Description: Состав пива
-    :param Id_of_feedback: id на таблицу с отзывами
     :param Mark: Оценка пива
     :param Amount: Объём
     :param Strength: Градусы
