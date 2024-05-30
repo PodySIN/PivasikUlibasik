@@ -134,7 +134,7 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
         if form.is_valid():
             text: str = form.data.get("Text")
             mark: int = form.data.get("Mark")
-            if mark <= 1 and mark <= 5:
+            if int(mark) >= 1 and int(mark) <= 5:
                 feedback = Feedback(
                     Beer_id=beer_id,
                     Text=text,
