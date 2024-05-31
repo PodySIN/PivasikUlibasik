@@ -9,7 +9,10 @@
             <h2>{{ beer.Name}}</h2>
         </div>
     </div>
+
     <div class="col">
+        <div class="text-center"><h6>ㅤ</h6></div>
+        <div class="text-center"><h6>ㅤ</h6></div>
         {% if beer.Mark == 5 %}
             <div class="text-center">
                 <img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}"><img class='star_image' src="{% static 'images/star.png' %}">
@@ -39,9 +42,10 @@
                 <img class='star_image' src="{% static 'images/star.png' %}">
             </div>
         {% endif %}
-        <div class="text-center"><p>{{beer.Description}}</p></div>
-        <div class="text-center"><p>Крепкость: {{beer.Strength}}</p></div>
-        <div class="text-center"><p>{{beer.Origin}}, {{beer.Amount}} л.</p></div>
+
+        <div class="text-center"><h6>{{beer.Description}}</h6></div>
+        <div class="text-center"><h6>Крепкость: {{beer.Strength}}</h6></div>
+        <div class="text-center"><h6>Производство: {{beer.Origin}}, {{beer.Amount}} л.</h6></div>
         <div class="text-center"><h4>{{beer.Price}}.00 ₽</h4></div>
     </div>
 
