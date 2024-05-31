@@ -19,7 +19,7 @@ from main.Utility import (
     get_discounts_of_beer,
 )
 from main.forms import RegistrationForm, LoginForm, Feedback_Form
-from main.models import Users, Beer, Feedback, Goods, Shop
+from main.models import Users, Beer, Feedback, Shop
 
 
 def index_page(request: WSGIRequest) -> HttpResponse:
@@ -129,9 +129,9 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
     :param beer_id: id конкретного пива, которое мы смотрим
     :return: страницу конкретного пива
     """
-    particular_beer = Beer.objects.get(id=beer_id)
-    context = get_base_context(f"{particular_beer.Name}")
-    context["beer"] = particular_beer
+    current_beer = Beer.objects.get(id=beer_id)
+    context = get_base_context(f"{current_beer.Name}")
+    context["beer"] = current_beer
     context["form"] = Feedback_Form()
     context["discounts"] = get_discounts_of_beer(beer_id)
     context["shops"] = get_shops_of_the_current_beer(beer_id)
@@ -149,7 +149,13 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
                     Username=request.user.username,
                 )
                 feedback.save()
-                change_beers_mark(particular_beer)
+                change_beers_mark(current_beer)
             else:
                 messages.add_message(request, messages.INFO, "Введите оценку от 1 до 5")
     return render(request, "pages/particular_beer.html", context)
+
+
+def particular_shop(request: WSGIRequest, shop_id) -> HttpResponse:
+    context = get_base_context("Магазины")
+    context["shop"] = Shop.objects.get(Shop_id=shop_id)
+    return render(request, "pages/particular_shop.html", context)

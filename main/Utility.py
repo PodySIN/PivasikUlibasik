@@ -47,7 +47,7 @@ def get_shops_of_the_current_beer(beer_id: int) -> list:
     return shops_arr
 
 
-def get_discounts_of_beer(beer_id: int) -> dict:
+def get_discounts_of_beer(beer_id: int) -> list[dict]:
     """
     Функция, которая возвращает словарь с магазинами,
     в которых есть скидка на конкретное пиво
@@ -57,12 +57,13 @@ def get_discounts_of_beer(beer_id: int) -> dict:
     """
     shops: list = get_shops_of_the_current_beer(beer_id)
     beer_cost = Beer.objects.get(id=beer_id).Price
-    costs: dict = {}
+    information_array: list[dict] = []
     for i in range(len(shops)):
         filter_discount = Discounts.objects.filter(Shop_id=shops[i].Shop_id, Beer_id=beer_id)
         if filter_discount.exists():
             id_of_shop = filter_discount.values("Shop_id")[0]["Shop_id"]
             address_of_shop = Shop.objects.get(Shop_id=id_of_shop).Address
             Amount = filter_discount.values("Amount")[0]["Amount"] / 100
-            costs[address_of_shop] = floor(beer_cost - (beer_cost * Amount))
-    return costs
+            Cost = floor(beer_cost - (beer_cost * Amount))
+            information_array.append({"id": id_of_shop, "address": address_of_shop, "cost": Cost})
+    return information_array

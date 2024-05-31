@@ -51,10 +51,21 @@
             <h5 class="card-title">Выгоднее всего покупать пивасик здесь:</h5>
           </div>
           <ul class="list-group list-group-flush">
-            {% for key, val in discounts.items %}
-                <a href="{% url 'index' %}">
-                    <li class="list-group-item">{{key}}: по скидке: <b>{{val}}.00 ₽</b></li>
-                </a>
+            {% for item in discounts %}
+                {% for key, val in item.items %}
+                    {% if key == 'id' %}
+                        <a href="/particular_shop/{{val}}">
+                    {% else %}
+                    {% if key == 'address' %}
+                    <li class="list-group-item">{{val}}:
+                        {% endif %}
+                        {% if key == 'cost' %}
+                            <h6>ㅤПо скидке:<b> {{val}}.00 ₽</b></h6>
+                        {% endif %}
+                    </li>
+                    </a>
+              {% endif %}
+              {% endfor %}
             {% endfor %}
           </ul>
         </div>
