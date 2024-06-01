@@ -41,7 +41,7 @@ def registration_page(request: WSGIRequest) -> HttpResponse:
     :param request: запрос к странице
     :return: страницу регистрации пользователя
     """
-    context: dict = get_base_context("Регистрация")
+    context: dict = get_base_context("ПивасикУлыбасик")
     context["RegistrationForm"] = RegistrationForm()
     if request.method == "POST":
         form = RegistrationForm(request.POST)
@@ -72,7 +72,7 @@ def login(request: WSGIRequest) -> HttpResponse:
     :param request: запрос к странице
     :return: страницу входа пользователя в систему
     """
-    context: dict = get_base_context("Login")
+    context: dict = get_base_context("ПивасикУлыбасик")
     context["form"] = LoginForm()
     if request.method == "POST":
         form: LoginForm = LoginForm(request.POST)
@@ -106,7 +106,7 @@ def catalog_page(request: WSGIRequest) -> HttpResponse:
     :param request: запрос к странице
     :return: каталог пива
     """
-    context: dict = get_base_context("Каталог")
+    context: dict = get_base_context("ПивасикУлыбасик")
     context["beers"] = Beer.objects.all()
     return render(request, "pages/catalog.html", context)
 
@@ -118,7 +118,7 @@ def profile_page(request: WSGIRequest) -> HttpResponse:
     :param request: запрос к странице
     :return: страницу профиля пользователя
     """
-    context: dict = get_base_context("Профиль")
+    context: dict = get_base_context("ПивасикУлыбасик")
     context["username"] = request.user.username
     context["bonuses"] = request.user.Bonuses
     return render(request, "pages/profile.html", context)
@@ -132,7 +132,7 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
     :return: страницу конкретного пива
     """
     current_beer = Beer.objects.get(id=beer_id)
-    context = get_base_context(f"{current_beer.Name}")
+    context: dict = get_base_context("ПивасикУлыбасик")
     context["beer"] = current_beer
     context["form"] = Feedback_Form()
     context["discounts"] = get_discounts_of_beer(beer_id)
@@ -158,8 +158,12 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
 
 
 def particular_shop(request: WSGIRequest, shop_id) -> HttpResponse:
-    context = get_base_context("Магазины")
+    context: dict = get_base_context("ПивасикУлыбасик")
     context["shop"] = Shop.objects.get(Shop_id=shop_id)
     context["beers"] = get_Beers_array(shop_id)
     context["vacancy"] = Shop.objects.get(Shop_id=shop_id).Job
     return render(request, "pages/particular_shop.html", context)
+
+
+def vacancy_page(request: WSGIRequest) -> HttpResponse:
+    context: dict = get_base_context("ПивасикУлыбасик")
