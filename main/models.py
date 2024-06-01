@@ -89,5 +89,5 @@ class Shop(models.Model):
     """
 
     Shop_id = models.IntegerField(primary_key=True, default=1)
-    Job = models.BinaryField(default=1)
+    Job = models.IntegerField(default=0)
     Address = models.CharField(default="Бульвар", max_length=256)

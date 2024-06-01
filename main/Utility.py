@@ -2,7 +2,7 @@
 Модуль, который хранит вспомогательные функции
 """
 
-from math import floor
+from math import floor, ceil
 
 from main.models import Feedback, Goods, Shop, Beer, Discounts
 
@@ -64,6 +64,24 @@ def get_discounts_of_beer(beer_id: int) -> list[dict]:
             id_of_shop = filter_discount.values("Shop_id")[0]["Shop_id"]
             address_of_shop = Shop.objects.get(Shop_id=id_of_shop).Address
             Amount = filter_discount.values("Amount")[0]["Amount"] / 100
-            Cost = floor(beer_cost - (beer_cost * Amount))
+            Cost = ceil(beer_cost - (beer_cost * Amount))
             information_array.append({"id": id_of_shop, "address": address_of_shop, "cost": Cost})
     return information_array
+
+
+def get_Beers_array(shop_id: int) -> list[dict]:
+    """
+    Функция, которая возвращает весь список пива, который есть в магазине.
+    :param shop_id: Id магазина, в который мы перешли.
+    :return: Весь список пива, который есть в магазине.
+    """
+    Beers_id_array = Goods.objects.filter(Shop_id=shop_id)
+    Beers_array: list[dict] = []
+    for i in range(len(Beers_id_array)):
+        Beers_array.append(
+            {
+                "id": Beers_id_array[i].Beer_id,
+                "Name": Beer.objects.get(id=Beers_id_array[i].Beer_id).Name,
+            }
+        )
+    return Beers_array

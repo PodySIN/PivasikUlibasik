@@ -7,6 +7,7 @@ from django.contrib.auth import (
     authenticate,
     logout as django_logout,
 )
+from django.contrib.auth.decorators import login_required
 
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
@@ -17,9 +18,10 @@ from main.Utility import (
     change_beers_mark,
     get_shops_of_the_current_beer,
     get_discounts_of_beer,
+    get_Beers_array,
 )
 from main.forms import RegistrationForm, LoginForm, Feedback_Form
-from main.models import Users, Beer, Feedback, Shop
+from main.models import Users, Beer, Feedback, Shop, Goods
 
 
 def index_page(request: WSGIRequest) -> HttpResponse:
@@ -109,6 +111,7 @@ def catalog_page(request: WSGIRequest) -> HttpResponse:
     return render(request, "pages/catalog.html", context)
 
 
+@login_required
 def profile_page(request: WSGIRequest) -> HttpResponse:
     """
     Страница отображения профиля пользователя
@@ -118,7 +121,6 @@ def profile_page(request: WSGIRequest) -> HttpResponse:
     context: dict = get_base_context("Профиль")
     context["username"] = request.user.username
     context["bonuses"] = request.user.Bonuses
-
     return render(request, "pages/profile.html", context)
 
 
@@ -158,4 +160,6 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
 def particular_shop(request: WSGIRequest, shop_id) -> HttpResponse:
     context = get_base_context("Магазины")
     context["shop"] = Shop.objects.get(Shop_id=shop_id)
+    context["beers"] = get_Beers_array(shop_id)
+    context["vacancy"] = Shop.objects.get(Shop_id=shop_id).Job
     return render(request, "pages/particular_shop.html", context)
