@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Магазины, в которых требуются работники
+  </div>
+  <ul class="list-group list-group-flush">
+      {% for shop in shops %}
+      <a href="particular_shop_vacancy/{{shop.Shop_id}}">
+        <li class="list-group-item">{{shop.Address}}</li>
+      </a>
+      {% endfor %}
+  </ul>
+</div>
+{% endblock %}

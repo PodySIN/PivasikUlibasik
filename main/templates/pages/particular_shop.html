@@ -3,111 +3,45 @@
 {% block shapka %}
 <div class="card" style="width: 105,5rem;">
     <img src="{% static 'images/Shop.png' %}" class="card-img-top">
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
     <div class="card-body">
       <h5 class="card-title">{{shop.Address}}</h5>
-
     </div>
-
-    <div class="card" style="width: 13rem;">
-        <ul class="list-group list-group-flush">
-          {% for beer in beers %}
-            <a href="/particular_beer/{{beer.id}}">
-                <li class="list-group-item">{{beer.Name}}</li>
-            </a>
-          {% endfor %}
-        </ul>
+        <div class="card" style="width: 13rem;">
+            <ul class="list-group list-group-flush">
+              {% for beer in beers %}
+                <a href="/particular_beer/{{beer.id}}">
+                    <li class="list-group-item">{{beer.Name}}</li>
+                </a>
+              {% endfor %}
+            </ul>
+        </div>
+    <hr>
+    <div id="map" style="width: 1200px; height: 600px;"></div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p>ㅤ</p>
+        </div>
+        <div class="col">
+            <div class="card-center">
+                <div class="card" style="width: 22rem;">
+                      <ul class="list-group list-group-flush">
+                          <h4>Перейти по адресу:</h4>
+                            <li class="list-group-item"><button class='btn btn-primary' onclick="goToPlacemark({{shop_id}})">{{shop.Address}}</button></li>
+                      </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <p>ㅤ</p>
+        </div>
     </div>
 </div>
-
-{% endblock %}
-{% block content %}
-<div class="text-center">
-<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa190807c45a545840e472d39d196da7f52b9afd0e1398179e1703f7f7e9f264a&amp;width=1200&amp;height=578&amp;lang=ru_RU&amp;scroll=true"></script>
-</div>
-<hr>
-
-{% if vacancy == 0 %}
-    <div class="text-center">
-        <h2>
-            Этому магазины на данный момент не требуются продавцы
-        </h2>
-    </div>
-{% endif %}
-{% if vacancy == 1 %}
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <div class="card" style="width: 20rem;">
-                  <img src="{% static 'images/Worker.png' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                        <h5 class="card-title">Вы нам нужны!!!</h5>
-                        <p class="card-text">Ищем продавца, опыт работы не нужен, от 18 лет.</p>
-                        <a href="tel: +79095929082" class="btn btn-primary">Позвонить нам!</a>
-                  </div>
-                    <span>+7 981 858-43-38</span>
-                </div>
-            </div>
-            <div class="col">
-                <p>ㅤ</p>
-            </div>
-            <div class="col">
-                <div class="card" style="width: 20rem;">
-                  <img src="{% static 'images/EliteWorker.png' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                        <h5 class="card-title">Вы нам нужны!!!</h5>
-                        <p class="card-text">Ищем старшего продавца, опыт работ не нужен, от 18 лет.</p>
-                        <a href="tel: +79095929082" class="btn btn-primary">Позвонить нам!</a>
-                  </div>
-                    <span>+7 981 858-43-38</span>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endif %}
-{% if vacancy == 2 %}
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <p>ㅤ</p>
-            </div>
-            <div class="col">
-                <div class="card" style="width: 20rem;">
-                  <img src="{% static 'images/Worker.png' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                        <h5 class="card-title">Вы нам нужны!!!</h5>
-                        <p class="card-text">Ищем продавца, опыт работы не нужен, от 18 лет.</p>
-                        <a href="tel: +79095929082" class="btn btn-primary">Позвонить нам!</a>
-                  </div>
-                    <span>+7 981 858-43-38</span>
-                </div>
-            </div>
-            <div class="col">
-                <p>ㅤ</p>
-            </div>
-        </div>
-    </div>
-{% endif %}
-{% if vacancy == 3 %}
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <p>ㅤ</p>
-            </div>
-            <div class="col">
-                <div class="card" style="width: 20rem;">
-                  <img src="{% static 'images/EliteWorker.png' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                        <h5 class="card-title">Вы нам нужны!!!</h5>
-                        <p class="card-text">Ищем старшего продавца, опыт работ не нужен, от 18 лет.</p>
-                        <a href="tel: +79095929082" class="btn btn-primary">Позвонить нам!</a>
-                  </div>
-                    <span>+7 981 858-43-38</span>
-                </div>
-            </div>
-            <div class="col">
-                <p>ㅤ</p>
-            </div>
-        </div>
-    </div>
-{% endif %}
 {% endblock %}

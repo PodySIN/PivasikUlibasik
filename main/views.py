@@ -31,20 +31,19 @@ def index_page(request: WSGIRequest) -> HttpResponse:
     :return: главную страницу
     """
     context: dict = get_base_context("ПивасикУлыбасик")
-
     return render(request, "pages/index.html", context)
 
 
 def registration_page(request: WSGIRequest) -> HttpResponse:
     """
-    Страница регистрации пользователя в систему
-    :param request: запрос к странице
-    :return: страницу регистрации пользователя
+    Страница регистрации пользователя в систему.
+    :param request: запрос к странице.
+    :return: страницу регистрации пользователя.
     """
     context: dict = get_base_context("ПивасикУлыбасик")
-    context["RegistrationForm"] = RegistrationForm()
+    context["RegistrationForm"]: dict = RegistrationForm()
     if request.method == "POST":
-        form = RegistrationForm(request.POST)
+        form: RegistrationForm = RegistrationForm(request.POST)
         if form.is_valid():
             password = form.data.get("Password")
             password_repeat = form.data.get("RepeatPassword")
@@ -68,12 +67,12 @@ def registration_page(request: WSGIRequest) -> HttpResponse:
 
 def login(request: WSGIRequest) -> HttpResponse:
     """
-    Страница входа пользователя в систему
-    :param request: запрос к странице
-    :return: страницу входа пользователя в систему
+    Страница входа пользователя в систему.
+    :param request: запрос к странице.
+    :return: страницу входа пользователя в систему.
     """
     context: dict = get_base_context("ПивасикУлыбасик")
-    context["form"] = LoginForm()
+    context["form"]: dict = LoginForm()
     if request.method == "POST":
         form: LoginForm = LoginForm(request.POST)
         if form.is_valid():
@@ -91,9 +90,9 @@ def login(request: WSGIRequest) -> HttpResponse:
 
 def logout(request: WSGIRequest) -> HttpResponse:
     """
-    Выход пользователя из системы
-    :param request: запрос к странице
-    :return: на главную страницу
+    Выход пользователя из системы.
+    :param request: запрос к странице.
+    :return: на главную страницу.
     """
     django_logout(request)
     messages.add_message(request, messages.INFO, "Вы успешно вышли из аккаунта")
@@ -102,42 +101,42 @@ def logout(request: WSGIRequest) -> HttpResponse:
 
 def catalog_page(request: WSGIRequest) -> HttpResponse:
     """
-    Страница всего пива в магазинах
-    :param request: запрос к странице
-    :return: каталог пива
+    Страница всего пива в магазинах.
+    :param request: запрос к странице.
+    :return: каталог пива.
     """
     context: dict = get_base_context("ПивасикУлыбасик")
-    context["beers"] = Beer.objects.all()
+    context["beers"]: dict = Beer.objects.all()
     return render(request, "pages/catalog.html", context)
 
 
 @login_required
 def profile_page(request: WSGIRequest) -> HttpResponse:
     """
-    Страница отображения профиля пользователя
-    :param request: запрос к странице
-    :return: страницу профиля пользователя
+    Страница отображения профиля пользователя.
+    :param request: запрос к странице.
+    :return: страницу профиля пользователя.
     """
     context: dict = get_base_context("ПивасикУлыбасик")
-    context["username"] = request.user.username
-    context["bonuses"] = request.user.Bonuses
+    context["username"]: dict = request.user.username
+    context["bonuses"]: dict = request.user.Bonuses
     return render(request, "pages/profile.html", context)
 
 
 def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
     """
-    Страница отображения конкретного пива из каталога
-    :param request: запрос к странице
-    :param beer_id: id конкретного пива, которое мы смотрим
-    :return: страницу конкретного пива
+    Страница отображения конкретного пива из каталога.
+    :param request: запрос к странице.
+    :param beer_id: id конкретного пива, которое мы смотрим.
+    :return: страницу конкретного пива.
     """
     current_beer = Beer.objects.get(id=beer_id)
     context: dict = get_base_context("ПивасикУлыбасик")
-    context["beer"] = current_beer
-    context["form"] = Feedback_Form()
-    context["discounts"] = get_discounts_of_beer(beer_id)
-    context["shops"] = get_shops_of_the_current_beer(beer_id)
-    context["feedbacks"] = Feedback.objects.filter(Beer_id=beer_id)
+    context["beer"]: dict = current_beer
+    context["form"]: dict = Feedback_Form()
+    context["discounts"]: dict = get_discounts_of_beer(beer_id)
+    context["shops"]: dict = get_shops_of_the_current_beer(beer_id)
+    context["feedbacks"]: dict = Feedback.objects.filter(Beer_id=beer_id)
     if request.method == "POST":
         form: Feedback_Form = Feedback_Form(request.POST)
         if form.is_valid():
@@ -157,13 +156,40 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
     return render(request, "pages/particular_beer.html", context)
 
 
-def particular_shop(request: WSGIRequest, shop_id) -> HttpResponse:
+def particular_shop(request: WSGIRequest, shop_id: int) -> HttpResponse:
+    """
+    Страница отображения конкретного магазина, в котором продается пиво пользователя.
+    :param request: Запрос к странице.
+    :param shop_id: Id конкретного магазина, который мы смотрим.
+    :return: страницу конкретного магазина.
+    """
     context: dict = get_base_context("ПивасикУлыбасик")
-    context["shop"] = Shop.objects.get(Shop_id=shop_id)
-    context["beers"] = get_Beers_array(shop_id)
-    context["vacancy"] = Shop.objects.get(Shop_id=shop_id).Job
+    context["shop"]: dict = Shop.objects.get(Shop_id=shop_id)
+    context["beers"]: dict = get_Beers_array(shop_id)
+    context["shop_id"]: dict = shop_id
     return render(request, "pages/particular_shop.html", context)
 
 
 def vacancy_page(request: WSGIRequest) -> HttpResponse:
+    """
+    Страница отображения всех магазинов, в которых нужен работник.
+    :param request: Запрос к странице.
+    :return: Страницу со всеми вакансиями из магазинов.
+    """
     context: dict = get_base_context("ПивасикУлыбасик")
+    context["shops"]: dict = Shop.objects.filter(Job__gte=1, Job__lte=2)
+    return render(request, "pages/vacancy.html", context)
+
+
+def particular_vacancy_need_shop(request: WSGIRequest, shop_id: int) -> HttpResponse:
+    """
+    Страница отображения вакансии, которая приглянулась пользователю.
+    :param request: Запрос к странице.
+    :param shop_id: Id конкретного магазина, который мы смотрим.
+    :return: Страницу вакансии.
+    """
+    context: dict = get_base_context("ПивасикУлыбасик")
+    context["vacancy"]: dict = Shop.objects.get(Shop_id=shop_id).Job
+    context["shop"]: dict = Shop.objects.get(Shop_id=shop_id)
+    context["shop_id"]: dict = shop_id
+    return render(request, "pages/particular_vacancy.html", context)

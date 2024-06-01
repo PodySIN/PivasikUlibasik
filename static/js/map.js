@@ -40,9 +40,9 @@ ymaps.ready(init);
     }
 
     function goToPlacemark(index) {
-        if (index < placemarks.length) {
-            myMap.setCenter(placemarks[index].geometry.getCoordinates(), 18);
-            placemarks[index].balloon.open();
+        if (index-1 < placemarks.length) {
+            myMap.setCenter(placemarks[index-1].geometry.getCoordinates(), 18);
+            placemarks[index-1].balloon.open();
         } else {
             alert('Нет такой метки');
         }
