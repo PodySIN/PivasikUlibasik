@@ -32,3 +32,8 @@ a.text {
 .serv li {
   outline: 1px solid;
 }
+
+body{
+    background: #ffffff;
+    color: #fff;
+}
