@@ -81,7 +81,7 @@
           </div>
           <ul class="list-group list-group-flush">
              {% for shop in shops %}
-                <a href="{% url 'index' %}">
+                <a href="/particular_shop/{{ shop.Shop_id}}">
                     <h6><li class="list-group-item">{{ shop.Address }}</li></h6>
                 </a>
               {% endfor %}
