@@ -193,3 +193,24 @@ def particular_vacancy_need_shop(request: WSGIRequest, shop_id: int) -> HttpResp
     context["shop"]: dict = Shop.objects.get(Shop_id=shop_id)
     context["shop_id"]: dict = shop_id
     return render(request, "pages/particular_vacancy.html", context)
+
+
+def shop_catalog_page(request: WSGIRequest) -> HttpResponse:
+    """
+    Страница отображения все магазины.
+    :param request: Запрос к странице.
+    :return: Страницу всех магазинов.
+    """
+    context: dict = get_base_context("ПивасикУлыбасик")
+    context["shops"]: dict = Shop.objects.all()
+    return render(request, "pages/shops_catalog.html", context)
+
+
+def about_us_page(request: WSGIRequest) -> HttpResponse:
+    """
+    Страница отображения страницы 'о нас'.
+    :param request: Запрос к странице.
+    :return: Страницу 'о нас'.
+    """
+    context: dict = get_base_context("ПивасикУлыбасик")
+    return render(request, "pages/about_us.html", context)
