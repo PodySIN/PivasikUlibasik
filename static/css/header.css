@@ -45,7 +45,7 @@ h1, h2 {
     height: 100%;
     top: 0;
     left: 0;
-    background: url('https://avatars.dzeninfra.ru/get-zen_doc/1863639/pub_63ccd11dcd8bcc467af731af_63ccd3fc7775357d86140398/scale_1200') center center no-repeat;
+    background: url('../images/preview.png') center center no-repeat;
     background-size: cover;
   }
 

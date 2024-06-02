@@ -37,4 +37,11 @@ urlpatterns = [
         views.particular_vacancy_need_shop,
         name="vacancy/particular_shop_vacancy/<shop_id>",
     ),
+    path("shop_catalog/", views.shop_catalog_page, name="shop_catalog"),
+    path(
+        "shop_catalog/particular_shop/<shop_id>",
+        views.particular_shop,
+        name="shop_catalog/particular_shop/<shop_id>",
+    ),
+    path("about_us/", views.about_us_page, name="about_us"),
 ]
