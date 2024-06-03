@@ -20,7 +20,6 @@ media
 .idea/**/vcs.xml
 .idea/**/modules.xml
 .idea/inspectionProfiles/profiles_settings.xml
-
 # AWS User-specific
 .idea/**/aws.xml
 
