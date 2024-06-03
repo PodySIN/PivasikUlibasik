@@ -44,4 +44,5 @@ urlpatterns = [
         name="shop_catalog/particular_shop/<shop_id>",
     ),
     path("about_us/", views.about_us_page, name="about_us"),
+    path("privacy_policy/", views.privacy_policy_page, name="privacy_policy"),
 ]
