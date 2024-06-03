@@ -47,7 +47,9 @@ class Beer(models.Model):
     """
 
     Name = models.CharField(default="Балтика", max_length=128)
-    Image = models.CharField(max_length=128, default="images/beers/baltika_7.jpg")
+    Image = models.CharField(
+        max_length=128, default="images/beers/baltika_7.jpg"
+    )
     Amount = models.FloatField(default=500)
     Strength = models.FloatField(default=9.9)
     Origin = models.CharField(default="Россия", max_length=128)

@@ -59,13 +59,17 @@ def get_discounts_of_beer(beer_id: int) -> list[dict]:
     beer_cost = Beer.objects.get(id=beer_id).Price
     information_array: list[dict] = []
     for i in range(len(shops)):
-        filter_discount = Discounts.objects.filter(Shop_id=shops[i].Shop_id, Beer_id=beer_id)
+        filter_discount = Discounts.objects.filter(
+            Shop_id=shops[i].Shop_id, Beer_id=beer_id
+        )
         if filter_discount.exists():
             id_of_shop = filter_discount.values("Shop_id")[0]["Shop_id"]
             address_of_shop = Shop.objects.get(Shop_id=id_of_shop).Address
             Amount = filter_discount.values("Amount")[0]["Amount"] / 100
             Cost = ceil(beer_cost - (beer_cost * Amount))
-            information_array.append({"id": id_of_shop, "address": address_of_shop, "cost": Cost})
+            information_array.append(
+                {"id": id_of_shop, "address": address_of_shop, "cost": Cost}
+            )
     return information_array
 
 

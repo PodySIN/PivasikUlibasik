@@ -29,8 +29,16 @@ urlpatterns = [
     path("profile/", views.profile_page, name="profile"),
     path("logout/", views.logout, name="logout"),
     path("catalog/", views.catalog_page, name="catalog"),
-    path("particular_beer/<beer_id>", views.particular_beer, name="particular_beer/<beer_id>"),
-    path("particular_shop/<shop_id>", views.particular_shop, name="particular_shop/<shop_id>"),
+    path(
+        "particular_beer/<beer_id>",
+        views.particular_beer,
+        name="particular_beer/<beer_id>",
+    ),
+    path(
+        "particular_shop/<shop_id>",
+        views.particular_shop,
+        name="particular_shop/<shop_id>",
+    ),
     path("vacancy/", views.vacancy_page, name="vacancy"),
     path(
         "vacancy/particular_shop_vacancy/<shop_id>",

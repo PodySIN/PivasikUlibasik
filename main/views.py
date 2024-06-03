@@ -21,7 +21,7 @@ from main.Utility import (
     get_Beers_array,
 )
 from main.forms import RegistrationForm, LoginForm, Feedback_Form
-from main.models import Users, Beer, Feedback, Shop, Goods
+from main.models import Users, Beer, Feedback, Shop
 
 
 def index_page(request: WSGIRequest) -> HttpResponse:
@@ -50,16 +50,22 @@ def registration_page(request: WSGIRequest) -> HttpResponse:
             if password == password_repeat:
                 username = form.data.get("Username")
                 if Users.objects.filter(username=username).exists():
-                    messages.info(request, "Пользователь с вашим именем уже существует!!!!")
+                    messages.info(
+                        request,
+                        "Пользователь с вашим именем уже существует!!!!",
+                    )
                     return redirect("/")
                 user = Users(username=username, password=password)
                 user.set_password(user.password)
                 user.save()
-                auth_user = authenticate(request, username=username, password=password)
+                auth_user = authenticate(
+                    request, username=username, password=password
+                )
                 if auth_user is not None:
                     django_login(request, user)
                     messages.success(
-                        request, f"Привет, {username}, вы успешно зарегистрировались!!"
+                        request,
+                        f"Привет, {username}, вы успешно зарегистрировались!!",
                     )
                     return redirect("registration")
     return render(request, "pages/registration.html", context)
@@ -81,7 +87,9 @@ def login(request: WSGIRequest) -> HttpResponse:
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 django_login(request, user)
-                messages.success(request, f"Привет, {username.title()}, с возвращением!!")
+                messages.success(
+                    request, f"Привет, {username.title()}, с возвращением!!"
+                )
                 return redirect("/")
             messages.info(request, "Некорректные данные в форме авторизации!")
             return redirect("login")
@@ -120,7 +128,9 @@ def profile_page(request: WSGIRequest) -> HttpResponse:
     context: dict = get_base_context("ПивасикУлыбасик")
     context["username"]: dict = request.user.username
     context["bonuses"]: dict = request.user.Bonuses
-    context['feedback']: dict = int(str(len(Feedback.objects.filter(Username=request.user.username)))[-1])
+    context["feedback"]: dict = int(
+        str(len(Feedback.objects.filter(Username=request.user.username)))[-1]
+    )
     return render(request, "pages/profile.html", context)
 
 
@@ -153,7 +163,9 @@ def particular_beer(request: WSGIRequest, beer_id: int) -> HttpResponse:
                 feedback.save()
                 change_beers_mark(current_beer)
             else:
-                messages.add_message(request, messages.INFO, "Введите оценку от 1 до 5")
+                messages.add_message(
+                    request, messages.INFO, "Введите оценку от 1 до 5"
+                )
     return render(request, "pages/particular_beer.html", context)
 
 
@@ -182,7 +194,9 @@ def vacancy_page(request: WSGIRequest) -> HttpResponse:
     return render(request, "pages/vacancy.html", context)
 
 
-def particular_vacancy_need_shop(request: WSGIRequest, shop_id: int) -> HttpResponse:
+def particular_vacancy_need_shop(
+    request: WSGIRequest, shop_id: int
+) -> HttpResponse:
     """
     Страница отображения вакансии, которая приглянулась пользователю.
     :param request: Запрос к странице.
@@ -218,5 +232,10 @@ def about_us_page(request: WSGIRequest) -> HttpResponse:
 
 
 def privacy_policy_page(request: WSGIRequest) -> HttpResponse:
-    context: dict = get_base_context('ПивасикУлыбасик')
-    return render(request, 'pages/privacy_policy.html', context)
+    """
+    Страница отображения страницы с политикой конфиденциальности.
+    :param request: Запрос к странице.
+    :return: Страницу политики конфиденциальности.
+    """
+    context: dict = get_base_context("ПивасикУлыбасик")
+    return render(request, "pages/privacy_policy.html", context)
