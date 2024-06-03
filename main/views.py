@@ -120,6 +120,7 @@ def profile_page(request: WSGIRequest) -> HttpResponse:
     context: dict = get_base_context("ПивасикУлыбасик")
     context["username"]: dict = request.user.username
     context["bonuses"]: dict = request.user.Bonuses
+    context['feedback']: dict = int(str(len(Feedback.objects.filter(Username=request.user.username)))[-1])
     return render(request, "pages/profile.html", context)
 
 
@@ -214,3 +215,8 @@ def about_us_page(request: WSGIRequest) -> HttpResponse:
     """
     context: dict = get_base_context("ПивасикУлыбасик")
     return render(request, "pages/about_us.html", context)
+
+
+def privacy_policy_page(request: WSGIRequest) -> HttpResponse:
+    context: dict = get_base_context('ПивасикУлыбасик')
+    return render(request, 'pages/privacy_policy.html', context)
