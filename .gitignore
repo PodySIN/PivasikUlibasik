@@ -16,6 +16,10 @@ media
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/**/misc.xml
+.idea/**/vcs.xml
+.idea/**/modules.xml
+.idea/inspectionProfiles/profiles_settings.xml
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -128,3 +132,11 @@ Control.ca-list
 Control.ca-bundle
 Control.system-ca-bundle
 GitHub.sublime-settings
+
+# Visual Studio Code #
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
