@@ -1,0 +1,132 @@
+[
+    {
+        "Beer_id": 1,
+        "Shop_id": 1,
+        "id": 1
+    },
+    {
+        "Beer_id": 2,
+        "Shop_id": 1,
+        "id": 2
+    },
+    {
+        "Beer_id": 5,
+        "Shop_id": 1,
+        "id": 3
+    },
+    {
+        "Beer_id": 7,
+        "Shop_id": 1,
+        "id": 4
+    },
+    {
+        "Beer_id": 1,
+        "Shop_id": 2,
+        "id": 5
+    },
+    {
+        "Beer_id": 7,
+        "Shop_id": 2,
+        "id": 6
+    },
+    {
+        "Beer_id": 1,
+        "Shop_id": 3,
+        "id": 7
+    },
+    {
+        "Beer_id": 3,
+        "Shop_id": 1,
+        "id": 8
+    },
+    {
+        "Beer_id": 4,
+        "Shop_id": 1,
+        "id": 9
+    },
+    {
+        "Beer_id": 6,
+        "Shop_id": 1,
+        "id": 10
+    },
+    {
+        "Beer_id": 8,
+        "Shop_id": 1,
+        "id": 11
+    },
+    {
+        "Beer_id": 2,
+        "Shop_id": 2,
+        "id": 12
+    },
+    {
+        "Beer_id": 3,
+        "Shop_id": 2,
+        "id": 13
+    },
+    {
+        "Beer_id": 4,
+        "Shop_id": 2,
+        "id": 14
+    },
+    {
+        "Beer_id": 2,
+        "Shop_id": 3,
+        "id": 15
+    },
+    {
+        "Beer_id": 4,
+        "Shop_id": 3,
+        "id": 16
+    },
+    {
+        "Beer_id": 7,
+        "Shop_id": 3,
+        "id": 17
+    },
+    {
+        "Beer_id": 8,
+        "Shop_id": 3,
+        "id": 18
+    },
+    {
+        "Beer_id": 1,
+        "Shop_id": 4,
+        "id": 19
+    },
+    {
+        "Beer_id": 2,
+        "Shop_id": 4,
+        "id": 20
+    },
+    {
+        "Beer_id": 3,
+        "Shop_id": 4,
+        "id": 21
+    },
+    {
+        "Beer_id": 5,
+        "Shop_id": 4,
+        "id": 22
+    },
+    {
+        "Beer_id": 6,
+        "Shop_id": 4,
+        "id": 23
+    },
+    {
+        "Beer_id": 7,
+        "Shop_id": 4,
+        "id": 24
+    },
+    {
+        "Beer_id": 8,
+        "Shop_id": 4,
+        "id": 25
+    },
+    {
+        "Beer_id": 5,
+        "Shop_id": 3,
+        "id": 26
+    }
+]

@@ -47,7 +47,7 @@ def get_shops_of_the_current_beer(beer_id: int) -> list:
     return shops_arr
 
 
-def get_discounts_of_beer(beer_id: int) -> list[dict]:
+def get_discounts_of_beer(beer_id: int) -> list:
     """
     Функция, которая возвращает словарь с магазинами,
     в которых есть скидка на конкретное пиво
@@ -57,7 +57,7 @@ def get_discounts_of_beer(beer_id: int) -> list[dict]:
     """
     shops: list = get_shops_of_the_current_beer(beer_id)
     beer_cost = Beer.objects.get(id=beer_id).Price
-    information_array: list[dict] = []
+    information_array: list = []
     for i in range(len(shops)):
         filter_discount = Discounts.objects.filter(
             Shop_id=shops[i].Shop_id, Beer_id=beer_id
@@ -73,14 +73,14 @@ def get_discounts_of_beer(beer_id: int) -> list[dict]:
     return information_array
 
 
-def get_Beers_array(shop_id: int) -> list[dict]:
+def get_Beers_array(shop_id: int) -> list:
     """
     Функция, которая возвращает весь список пива, который есть в магазине.
     :param shop_id: Id магазина, в который мы перешли.
     :return: Весь список пива, который есть в магазине.
     """
     Beers_id_array = Goods.objects.filter(Shop_id=shop_id)
-    Beers_array: list[dict] = []
+    Beers_array: list = []
     for i in range(len(Beers_id_array)):
         Beers_array.append(
             {

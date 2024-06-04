@@ -1,9 +1,10 @@
 .beer_images {
-  width: 275px;
-  height: 225px;
+  width: 100px;
+  height: 250px;
   image-rendering: -moz-crisp-edges; /* Firefox */
   -ms-interpolation-mode: nearest-neighbor;  /* IE */
   image-rendering: crisp-edges; /* Стандартное свойство */
+  margin-left: 100px;
 }
 
 a.text:active, /* активная/посещенная ссылка */

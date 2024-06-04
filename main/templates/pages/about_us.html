@@ -34,17 +34,10 @@
             <p>Ждем вас в нашем пивном баре, где каждый гость - дорогой друг для нас!</p>
         </div>
     </section>
-    <footer class="content-footer">
-        <div class="footer-container">
-            <p>Подпишись на наши соцсети</p>
-            <a target="_blank" href="https://github.com/kedarjoyner"><i
-                    class="fa fa-github-alt fa-inverse fa-2x"></i></a>
-            &nbsp;
-            <a href="https://twitter.com/kedmasterk"><i class="fa fa-twitter fa-inverse fa-2x"></i></a>
-            &nbsp;
-            <a href="https://instagram.com/kedarjoyner/"><i class="fa fa-instagram fa-inverse fa-2x"></i></a>
-            <p>В чём сила, брат? В пиве, брат!</p>
-        </div>
-    </footer>
+    <footer class="footer mt-auto py-3">
+                {% block footer %}
+                    {% include 'footer.html' %}
+                {% endblock %}
+      </footer>
 </body>
 </html>
