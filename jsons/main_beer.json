@@ -1,0 +1,90 @@
+[
+    {
+        "Amount": 0.5,
+        "Description": "Пиво БАЛТИКА светлое экспортное",
+        "Image": "images/beers/baltika_7.png",
+        "Mark": 3,
+        "Name": "балткика 7",
+        "Origin": "Россия",
+        "Price": 60,
+        "Strength": 5.4,
+        "id": 1
+    },
+    {
+        "Amount": 0.5,
+        "Description": "Пиво ОХОТА крепкое фильтр.",
+        "Image": "images/beers/ohota.png",
+        "Mark": 4,
+        "Name": "Охота крепкая",
+        "Origin": "Россия",
+        "Price": 56,
+        "Strength": "8,1",
+        "id": 2
+    },
+    {
+        "Amount": 0.5,
+        "Description": "Светлое пиво Velkopopovicky Kozel Premium",
+        "Image": "images/beers/kozel.png",
+        "Mark": 5,
+        "Name": "Kozel Premium",
+        "Origin": "Чехия",
+        "Price": 169,
+        "Strength": 4.6,
+        "id": 3
+    },
+    {
+        "Amount": 0.5,
+        "Description": "Светлое пиво Heineken",
+        "Image": "images/beers/haink.png",
+        "Mark": 4,
+        "Name": "Heineken",
+        "Origin": "Австрия",
+        "Price": 180,
+        "Strength": 3.8,
+        "id": 4
+    },
+    {
+        "Amount": 0.44,
+        "Description": "Светлое пиво Velvet",
+        "Image": "images/beers/velvet.png",
+        "Mark": 3,
+        "Name": "Velvet",
+        "Origin": "Чехия",
+        "Price": 53,
+        "Strength": 5.1,
+        "id": 5
+    },
+    {
+        "Amount": 0.44,
+        "Description": "Тёмное пиво Guinness Draught Stout",
+        "Image": "images/beers/Guiness.png",
+        "Mark": 5,
+        "Name": "Guinness Draught Stout",
+        "Origin": "Ирландия",
+        "Price": 220,
+        "Strength": 8.6,
+        "id": 6
+    },
+    {
+        "Amount": 0.355,
+        "Description": "Светлое пиво Corona Extra",
+        "Image": "images/beers/corona.png",
+        "Mark": 3,
+        "Name": "Corona Extra",
+        "Origin": "Мексика",
+        "Price": 128,
+        "Strength": 4.1,
+        "id": 7
+    },
+    {
+        "Amount": 0.46,
+        "Description": "Светлое пиво Kronenbourg 1664 Blanc",
+        "Image": "images/beers/Kronenbourg.png",
+        "Mark": 4,
+        "Name": "Kronenbourg 1664 Blanc",
+        "Origin": "Россия",
+        "Price": 90,
+        "Strength": 3.7,
+        "id": 8
+    }
+]
