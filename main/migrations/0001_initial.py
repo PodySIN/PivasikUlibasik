@@ -97,9 +97,7 @@ class Migration(migrations.Migration):
             fields=[
                 (
                     "Shop_id",
-                    models.IntegerField(
-                        default=1, primary_key=True, serialize=False
-                    ),
+                    models.IntegerField(default=1, primary_key=True, serialize=False),
                 ),
                 ("Job", models.BinaryField(default=1)),
                 (
