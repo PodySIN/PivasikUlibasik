@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'head.html' %}
+<link rel="stylesheet" href="{% static 'css/about_us.css' %}" />
+<script src="https://kit.fontawesome.com/1cf483120b.js" crossorigin="anonymous"></script>
+{% include 'header.html' %}
+<body>
+    <header class="masthead">
+        <p class="masthead-intro">Пивасик Улыбасик</p>
+        <h1 class="masthead-heading">В чём сила, брат? В пиве, брат!</h1>
+    </header>
+    <section class="introduction-section">
+        <div class="container">
+            <h1>Немного о нас</h1>
+            <p>Добро пожаловать в наш пивной бар! Мы - команда энтузиастов, увлеченных пивным искусством и созданием уютной атмосферы для всех любителей крафтового пива.</p>
+        </div>
+    </section>
+    <section class="location-section">
+        <div class="container">
+            <p>Наш бар - это место, где каждый может насладиться настоящим вкусом пива, выбрав из нашего разнообразного ассортимента сортов. Мы уделяем особое внимание качеству напитков, предлагая только лучшие образцы мировых и отечественных пивоварен.</p>
+        </div>
+    </section>
+    <section class="questions-section">
+        <div class="container">
+            <p>Мы рады предложить нашим гостям уютную атмосферу и профессиональное обслуживание. У нас всегда играет приятная музыка, мы проводим тематические вечера и мастер-классы, чтобы сделать ваше посещение у нас запоминающимся и веселым.</p>
+        </div>
+    </section>
+    <section class="location-section">
+        <div class="container">
+            <p>Посетите наш пивной бар, чтобы отведать лучшие виды пива, побеседовать с друзьями или просто расслабиться после рабочего дня. Мы уверены, что у нас вы найдете не только отличное пиво, но и приятное времяпрепровождение!</p>
+        </div>
+    </section>
+    <section class="location-section">
+        <div class="container">
+            <p>Ждем вас в нашем пивном баре, где каждый гость - дорогой друг для нас!</p>
+        </div>
+    </section>
+    <footer class="footer mt-auto py-3">
+                {% block footer %}
+                    {% include 'footer.html' %}
+                {% endblock %}
+      </footer>
+</body>
+</html>

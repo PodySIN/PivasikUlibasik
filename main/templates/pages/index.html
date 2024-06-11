@@ -1,12 +1,48 @@
-{% extends 'base.html' %}
+{% load static %}
 
+{% block head %}
+    {% include 'head.html' %}
 
-
-{% block content %}
-<h1>
-    <form>
-
-    </form>
-</h1>
-
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
 {% endblock %}
+
+
+{% include 'header.html' %}
+<body>
+  <div class="page">
+    <div class="intro-header">
+      <div class="bg-image parallax-bg"></div>
+      <div class="header-content row">
+        <h1>Пивасик Улыбасик</h1>
+        <h2>В чём сила, брат? В пиве, брат!</h2>
+      </div>
+  </div>
+    <div class="content">
+        <div class="row">
+            <div class="text-center">
+                <h3>Мы находимся здесь</h3>
+            </div>
+            <div id="map" style="width: 1200px; height: 600px;"></div>
+            <hr>
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Перейти к магазинам</div>
+                    <button class='btn btn-primary' onclick="goToPlacemark(1)">Магазин на Воронцовском</button>
+                    <button class='btn btn-primary' onclick="goToPlacemark(2)">Магазин на Петровском бульваре</button>
+                    <button class='btn btn-primary' onclick="goToPlacemark(3)">Магазин на Шувалов</button>
+                    <button class='btn btn-primary' onclick="goToPlacemark(4)">Магазин на Купчинской</button>
+                    <button class='btn btn-primary' onclick="goToPlacemark(5)">Магазин на Будапештской</button>
+                    <button class='btn btn-primary' onclick="goToPlacemark(6)">Магазин на Берлинской</button>
+                    <button class='btn btn-primary' onclick="goToPlacemark(7)">Магазин на Заморской</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      <footer class="footer mt-auto py-3">
+                {% block footer %}
+                    {% include 'indexfooter.html' %}
+                {% endblock %}
+      </footer>
+      <script src="{% static 'js/header.js' %}"></script>
+</body>
+
+

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block shapka %}
+<div class="card" style="width: 105,5rem;">
+    <img src="{% static 'images/Shop.png' %}" class="card-img-top">
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <div class="card-body">
+      <h5 class="card-title">{{shop.Address}}</h5>
+    </div>
+        <div class="card" style="width: 13rem;">
+            <ul class="list-group list-group-flush">
+              {% for beer in beers %}
+                <a href="/particular_beer/{{beer.id}}">
+                    <li class="list-group-item">{{beer.Name}}</li>
+                </a>
+              {% endfor %}
+            </ul>
+        </div>
+    <hr>
+    <div id="map" style="width: 1200px; height: 600px;"></div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p>ㅤ</p>
+        </div>
+        <div class="col">
+            <div class="card-center">
+                <div class="card" style="width: 22rem;">
+                      <ul class="list-group list-group-flush">
+                          <h4>Перейти по адресу:</h4>
+                            <li class="list-group-item"><button class='btn btn-primary' onclick="goToPlacemark({{shop_id}})">{{shop.Address}}</button></li>
+                      </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <p>ㅤ</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

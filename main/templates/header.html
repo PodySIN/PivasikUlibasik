@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Пивасик Улыбасик </a>
@@ -8,7 +11,7 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="{%url 'index' %}">Главная</a>
         <a class="nav-link active" aria-current="page" href="{%url 'catalog' %}">Каталог</a>
-        <a class="nav-link active" aria-current="page" href="{%url 'index' %}">2</a>
+        <a class="nav-link active" aria-current="page" href="{%url 'shop_catalog' %}">Список магазинов</a>
       </div>
     </div>
     <div class="navbar-nav">

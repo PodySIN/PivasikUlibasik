@@ -1,0 +1,74 @@
+[
+    {
+        "Amount": 10,
+        "Beer_id": 1,
+        "Shop_id": 1,
+        "id": 1
+    },
+    {
+        "Amount": 25,
+        "Beer_id": 1,
+        "Shop_id": 2,
+        "id": 2
+    },
+    {
+        "Amount": 50,
+        "Beer_id": 1,
+        "Shop_id": 3,
+        "id": 3
+    },
+    {
+        "Amount": 10,
+        "Beer_id": 2,
+        "Shop_id": 4,
+        "id": 4
+    },
+    {
+        "Amount": 5,
+        "Beer_id": 3,
+        "Shop_id": 1,
+        "id": 5
+    },
+    {
+        "Amount": 5,
+        "Beer_id": 4,
+        "Shop_id": 2,
+        "id": 6
+    },
+    {
+        "Amount": 5,
+        "Beer_id": 5,
+        "Shop_id": 3,
+        "id": 7
+    },
+    {
+        "Amount": 10,
+        "Beer_id": 6,
+        "Shop_id": 4,
+        "id": 8
+    },
+    {
+        "Amount": 15,
+        "Beer_id": 7,
+        "Shop_id": 1,
+        "id": 9
+    },
+    {
+        "Amount": 15,
+        "Beer_id": 8,
+        "Shop_id": 2,
+        "id": 10
+    },
+    {
+        "Amount": 15,
+        "Beer_id": 4,
+        "Shop_id": 4,
+        "id": 11
+    },
+    {
+        "Amount": 25,
+        "Beer_id": 6,
+        "Shop_id": 3,
+        "id": 12
+    }
+]

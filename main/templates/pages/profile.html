@@ -1,12 +1,53 @@
-{% extends 'base.html' %}
-
-
-
+{% load static %}
+{% block head %}
+    {% include 'head.html' %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+{% include 'header.html' %}
 {% block content %}
-<h1>
-    <form>
+<body class="d-flex flex-column h-100">
+<p>ㅤ</p>
+  <main class="profile">
+  <div class="profile-bg"></div>
+  <section class="container">
+    <aside class="profile-image">
 
-    </form>
-</h1>
-
+    </aside>
+    <section class="profile-info">
+      <h1 class="first-name">Профиль</h1>
+      <h1 class="second-name">{{username}}</h1>
+      <h2>Бонусы: {{bonuses}}</h2>
+      <p>
+        Уважаемый пользователя сайта Пивасик Улыбасик, а также уважаемый человек.
+      </p>
+    </section>
+  </section>
+  <section class="statistics">
+    <button class="icon arrow left"></button>
+    <button class="icon arrow right"></button>
+    {% if feedback == 1 %}
+    <p><strong>{{feedback}}</strong> Отзыв</p>
+    {% endif %}
+    {% if feedback == 0 %}
+    <p><strong>{{feedback}}</strong> Отзывов</p>
+    {% endif %}
+    {% if feedback >= 2 and feedback <= 4 %}
+    <p><strong>{{feedback}}</strong> Отзыва</p>
+    {% endif %}
+    {% if feedback >= 5 %}
+    <p><strong>{{feedback}}</strong> Отзывов</p>
+    {% endif %}
+    <p><strong>ㅤ</strong> ㅤ</p>
+    <p><strong>6</strong> Хмельных в любимых</p>
+  </section>
+  <button class="icon close"></button>
+</main>
+<p>ㅤ</p>
+<hr>
+ <footer class="footer mt-auto py-3">
+                {% block footer %}
+                    {% include 'footer.html' %}
+                {% endblock %}
+      </footer>
+</body>
 {% endblock %}

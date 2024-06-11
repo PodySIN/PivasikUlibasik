@@ -1,0 +1,67 @@
+@import url(https://fonts.googleapis.com/css?family=Leckerli+One);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+}
+h1, h2 {
+  margin: 0;
+  font-family: 'Leckerli One', cursive;
+  text-shadow: 0 2px rgba(0,0,0,.5);
+}
+
+.row {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.intro-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: table;
+  z-index: -1;
+
+   &:before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: rgba(0,0,0,.3);
+       z-index: 1;
+    }
+
+  .bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url('../images/preview.png') center center no-repeat;
+    background-size: cover;
+  }
+
+  .header-content {
+    position: relative;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    z-index: 2;
+  }
+
+}
+
+.content {
+  height: 160vh;
+  padding: 100px;
+  background: #333;
+  margin-top: 100vh;
+}
