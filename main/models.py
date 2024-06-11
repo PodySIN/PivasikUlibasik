@@ -15,7 +15,8 @@ class Users(AbstractUser):
     """
 
     Bonuses = models.IntegerField(default=0)
-
+    class Meta:
+        db_table = 'Users'
 
 class Feedback(models.Model):
     """
@@ -30,7 +31,8 @@ class Feedback(models.Model):
     Text = models.CharField(default="", max_length=512)
     Mark = models.IntegerField(default=5)
     Username = models.CharField(default=0, max_length=128)
-
+    class Meta:
+        db_table = 'Feedbacks'
 
 class Beer(models.Model):
     """
@@ -54,7 +56,8 @@ class Beer(models.Model):
     Price = models.IntegerField(default=100)
     Description = models.CharField(default="", max_length=512)
     Mark = models.IntegerField(default=5)
-
+    class Meta:
+        db_table = 'Beers'
 
 class Goods(models.Model):
     """
@@ -64,7 +67,8 @@ class Goods(models.Model):
 
     Shop_id = models.IntegerField(default=0)
     Beer_id = models.IntegerField(default=0)
-
+    class Meta:
+        db_table = 'Goods'
 
 class Discounts(models.Model):
     """
@@ -77,6 +81,8 @@ class Discounts(models.Model):
     Shop_id = models.IntegerField(default=0)
     Amount = models.IntegerField(default=0)
     Beer_id = models.IntegerField(default=0)
+    class Meta:
+        db_table = 'Discounts'
 
 
 class Shop(models.Model):
@@ -87,7 +93,8 @@ class Shop(models.Model):
     :param Discounts_id: id на талицу со скидками,
     :param Beer_id: id на таблицу с пивом.
     """
-
     id = models.IntegerField(primary_key=True, default=1)
     Job = models.IntegerField(default=0)
     Address = models.CharField(default="Бульвар", max_length=256)
+    class Meta:
+        db_table = 'Shops'
