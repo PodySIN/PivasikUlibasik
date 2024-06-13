@@ -1,46 +1,14 @@
 """
-Модуль, который хранит вспомогательные функции
+Сервис, который обрабатывает информацию из базы данных.
 """
 
 from math import ceil
-from main.models import Feedback, Goods, Shop, Beer, Discounts
+from catalog.models import Goods, Shop, Beer, Discounts
+from main.service import get_all_objects_from_db, get_object_from_db
+from users.models import Feedback
 from main.configure import configure_logging
 
 logger = configure_logging()
-
-
-def get_object_from_db(model, id: int):
-    """
-    Функция, которая возвращает объект модели по id.
-    :param model: Модель из которой мы хотим получить данные.
-    :param id: Id объекта этой модели.
-    :return: Возвращаем объект модели по id.
-    """
-    logger.info(f"Получаем объект из {model} с id: {id}.")
-    return model.objects.get(id=id)
-
-
-def get_all_objects_from_db(model):
-    """
-    Функция, которая возвращает все объекты модели.
-    :param model: Модель из которой мы хотим получить данные.
-    :return: Возвращаем все объекты модели.
-    """
-    logger.info(f"Получаем все объекты из {model}.")
-    return model.objects.all()
-
-
-def get_base_context(Title: str) -> dict:
-    """
-    Возвращает словарь с названием страницы
-    :param Title: Название страницы
-    :return: словарь с названием страницы
-    """
-    logger.info("Получаем context.")
-    context: dict = {
-        "Title": Title,
-    }
-    return context
 
 
 def change_beers_mark(particular_beer):
