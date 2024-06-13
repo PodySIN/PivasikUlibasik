@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
 <div class="serv">
      <ul>
     {% for beer in beers %}
-         <a class="text" href="/particular_beer/{{beer.id}}">
+         <a class="text" href="particular_beer/{{beer.id}}">
             <li>
                 <img class='beer_images' src="{% static beer.Image %}">
                 <div class="text-center"><h2>{{beer.Name}}</h2></div>
@@ -46,5 +45,4 @@
     {% endfor %}
      </ul>
 </div>
-
 {% endblock %}
