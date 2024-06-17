@@ -13,9 +13,17 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
-from core.configuration import DATABASE_NAME, USERNAME, PASSWORD, HOST, PORT, SECRET_KEY
+from core.configuration import (
+    DATABASE_NAME,
+    USERNAME,
+    PASSWORD,
+    HOST,
+    PORT,
+    SECRET_KEY,
+    DEBUG,
+    ALLOWED_HOSTS,
+)
 
-"""Файл скрыт на всякий случай"""
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,9 +35,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ALLOWED_HOSTS
 
 
 # Application definition
@@ -89,6 +97,9 @@ DATABASES = {
         "PASSWORD": PASSWORD,
         "HOST": HOST,
         "PORT": PORT,
+        'OPTIONS': {
+            'options': '-c search_path=public'
+        },
     }
 }
 
