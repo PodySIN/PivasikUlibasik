@@ -1,7 +1,7 @@
 """
 Модуль отвечающий за отображение страниц (main).
 """
-
+import psycopg2
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -9,7 +9,7 @@ from main.service import get_base_context
 from main.configure import configure_logging
 
 logger = configure_logging()
-
+from django.db import connection
 
 def index_page(request: WSGIRequest) -> HttpResponse:
     """
